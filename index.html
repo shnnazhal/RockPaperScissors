@@ -11,6 +11,7 @@ function getComputerChoice() {
     return array[Math.floor(Math.random() * array.length)];
 }
 function getHumansChoice() {
+
     let choice = prompt("Choice rock, paper, or scissor");
     switch (choice.toLowerCase()) {
         case "rock":
@@ -30,18 +31,43 @@ function playRound() {
     let computer = getComputerChoice();
     console.log(human)
     console.log(computer)
-    if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
-    return "You lose"
+
+
+    if (checkWin() === true) {
+        return "try again"
+    }
+    else if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
+    computerScore++;
+        console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
+        return "You lose"
     }
     else if (human === "paper" && computer === "paper" || human === "scissor" && computer === "scissor" || human === "rock" && computer === "rock"){
+        console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
         return "Its a draw"
     }
     else if (human === "paper" && computer === "rock" || human === "scissor" && computer === "paper" || human === "rock" && computer === "scissor"){
+    humanScore++;
+        console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
         return "You won"
+    }
+
+}
+
+
+
+function checkWin() {
+    if(humanScore === 5) {
+        return console.log("U won!")
+    }
+    else if(computerScore === 5) {
+        return console.log("computer won!")
     }
 }
 
-console.log(playRound())
+while (humanScore < 5 && computerScore < 5) {
+    console.log(playRound());
+}
+
 
 
 
