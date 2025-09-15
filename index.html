@@ -7,12 +7,12 @@
 <body>
 <script>
 function getComputerChoice() {
-    const array = ["Rock", "paper", "scissor"];
+    const array = ["rock", "paper", "scissor"];
     return array[Math.floor(Math.random() * array.length)];
 }
 function getHumansChoice() {
     let choice = prompt("Choice rock, paper, or scissor");
-    switch (choice) {
+    switch (choice.toLowerCase()) {
         case "rock":
             return "rock"
         case "paper":
@@ -25,14 +25,26 @@ function getHumansChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+function playRound() {
+    let human = getHumansChoice();
+    let computer = getComputerChoice();
+    console.log(human)
+    console.log(computer)
+    if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
+    return "You lose"
+    }
+    else if (human === "paper" && computer === "paper" || human === "scissor" && computer === "scissor" || human === "rock" && computer === "rock"){
+        return "Its a draw"
+    }
+    else if (human === "paper" && computer === "rock" || human === "scissor" && computer === "paper" || human === "rock" && computer === "scissor"){
+        return "You won"
+    }
+}
+
+console.log(playRound())
 
 
 
-
-
-console.log(getHumansChoice())
-
-console.log(getComputerChoice())
 </script>
 
 
