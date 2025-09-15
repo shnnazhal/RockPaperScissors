@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JS</title>
+</head>
+<body>
+<script>
+function getComputerChoice() {
+    const array = ["Rock", "paper", "scissor"];
+    return array[Math.floor(Math.random() * array.length)];
+}
+function getHumansChoice() {
+    let choice = prompt("Choice rock, paper, or scissor");
+    switch (choice) {
+        case "rock":
+            return "rock"
+        case "paper":
+            return "paper"
+        case "scissor":
+            return "scissor"
+    }
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+
+
+
+
+
+console.log(getHumansChoice())
+
+console.log(getComputerChoice())
+</script>
+
+
+</body>
+</html>
