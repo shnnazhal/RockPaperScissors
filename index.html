@@ -5,38 +5,45 @@
     <title>JS</title>
 </head>
 <body>
+<div id="containerBtn">
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissor">scissor</button>
+</div>
+
+
 <script>
-function getComputerChoice() {
+document.querySelector("#rock").addEventListener("click", () => {
+    playRound('rock', getComputerChoice())
+})
+document.querySelector("#scissor").addEventListener("click", () => {
+    playRound('scissor', getComputerChoice())
+})
+document.querySelector("#paper").addEventListener("click", () => {
+    playRound('paper', getComputerChoice())
+})
+
+
+
+
+
+
+    function getComputerChoice() {
     const array = ["rock", "paper", "scissor"];
     return array[Math.floor(Math.random() * array.length)];
 }
-function getHumansChoice() {
 
-    let choice = prompt("Choice rock, paper, or scissor");
-    switch (choice.toLowerCase()) {
-        case "rock":
-            return "rock"
-        case "paper":
-            return "paper"
-        case "scissor":
-            return "scissor"
-    }
-}
 
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound() {
-    let human = getHumansChoice();
-    let computer = getComputerChoice();
+function playRound(human, computer) {
     console.log(human)
     console.log(computer)
 
 
-    if (checkWin() === true) {
-        return "try again"
-    }
-    else if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
+
+    if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
     computerScore++;
         console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
         return "You lose"
@@ -51,21 +58,7 @@ function playRound() {
         return "You won"
     }
 
-}
 
-
-
-function checkWin() {
-    if(humanScore === 5) {
-        return console.log("U won!")
-    }
-    else if(computerScore === 5) {
-        return console.log("computer won!")
-    }
-}
-
-while (humanScore < 5 && computerScore < 5) {
-    console.log(playRound());
 }
 
 
