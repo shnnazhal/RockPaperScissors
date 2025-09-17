@@ -52,23 +52,29 @@
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(human, computer) {
-    console.log(computer)
-
-
-    if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
-    computerScore++;
-        return "You lose"
+    function playRound(human, computer) {
+        if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
+            computerScore++;
+            if(computerScore === 5) {
+                humanScore = 0;      // Reset human score
+                computerScore = 0;   // Reset computer score
+                return "You lose - Game Over! Computer wins 5 rounds!";
+            }
+            return "You lose"
+        }
+        else if (human === "paper" && computer === "paper" || human === "scissor" && computer === "scissor" || human === "rock" && computer === "rock"){
+            return "Its a draw"
+        }
+        else if (human === "paper" && computer === "rock" || human === "scissor" && computer === "paper" || human === "rock" && computer === "scissor"){
+            humanScore++;
+            if (humanScore === 5) {
+                humanScore = 0;      // Reset human score
+                computerScore = 0;   // Reset computer score
+                return "You won - Game Over! You win 5 rounds!";
+            }
+            return "You won"
+        }
     }
-    else if (human === "paper" && computer === "paper" || human === "scissor" && computer === "scissor" || human === "rock" && computer === "rock"){
-        return "Its a draw"
-    }
-    else if (human === "paper" && computer === "rock" || human === "scissor" && computer === "paper" || human === "rock" && computer === "scissor"){
-    humanScore++;
-        return "You won"
-    }
-}
-
 const hummanScoreOutput = document.querySelector("#urscore")
 
 document.querySelector("#containerBtn").addEventListener("click", () => {
