@@ -5,23 +5,38 @@
     <title>JS</title>
 </head>
 <body>
+<div id="resultContainer">
+    <h1 id="resultTxt">LetsPlay!</h1>
+    <div id="result">
+        Ur score:<div id="urscore"></div>
+        robotscore:<div id="robotscore"></div>
+    </div>
+</div>
 <div id="containerBtn">
-    <button id="rock">rock</button>
-    <button id="paper">paper</button>
-    <button id="scissor">scissor</button>
+    <button id="rock" data-value="rock">rock</button>
+    <button id="paper" data-value="paper">paper</button>
+    <button id="scissor" data-value="scissor">scissor</button>
+</div>
+<div id="changes">
+    <div id="urChoice"></div>
+    <div id="computerChoice"></div>
+
 </div>
 
 
 <script>
-document.querySelector("#rock").addEventListener("click", () => {
-    playRound('rock', getComputerChoice())
-})
-document.querySelector("#scissor").addEventListener("click", () => {
-    playRound('scissor', getComputerChoice())
-})
-document.querySelector("#paper").addEventListener("click", () => {
-    playRound('paper', getComputerChoice())
-})
+    document.querySelector("#rock").addEventListener("click", () => {
+        let result = playRound('rock', getComputerChoice());
+        document.querySelector("#resultTxt").textContent = result;
+    })
+    document.querySelector("#scissor").addEventListener("click", () => {
+        let result = playRound('scissor', getComputerChoice());
+        document.querySelector("#resultTxt").textContent = result;
+    })
+    document.querySelector("#paper").addEventListener("click", () => {
+        let result = playRound('paper', getComputerChoice());
+        document.querySelector("#resultTxt").textContent = result;
+    })
 
 
 
@@ -38,29 +53,46 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(human, computer) {
-    console.log(human)
     console.log(computer)
-
 
 
     if (human === "paper" && computer === "scissor" || human === "scissor" && computer === "rock" || human === "rock" && computer === "paper") {
     computerScore++;
-        console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
         return "You lose"
     }
     else if (human === "paper" && computer === "paper" || human === "scissor" && computer === "scissor" || human === "rock" && computer === "rock"){
-        console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
         return "Its a draw"
     }
     else if (human === "paper" && computer === "rock" || human === "scissor" && computer === "paper" || human === "rock" && computer === "scissor"){
     humanScore++;
-        console.log("Ur score " + humanScore + " ---" + " Computerscore " + computerScore);
         return "You won"
     }
-
-
 }
 
+const hummanScoreOutput = document.querySelector("#urscore")
+
+document.querySelector("#containerBtn").addEventListener("click", () => {
+    hummanScoreOutput.textContent = humanScore;
+})
+
+
+const robotScoreOutput = document.querySelector("#robotscore")
+
+document.querySelector("#containerBtn").addEventListener("click", () => {
+    robotScoreOutput.textContent = computerScore;
+})
+
+const humanschoice = document.querySelector("#urscore")
+
+document.querySelector("#containerBtn").addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+        let humanChoice = e.target.dataset.value;
+        let computerchoice = getComputerChoice();
+
+        document.querySelector("#urChoice").textContent = "You chose: " + humanChoice
+        document.querySelector("#computerChoice").textContent = "Computer chose: " + computerchoice
+    }
+})
 
 
 
